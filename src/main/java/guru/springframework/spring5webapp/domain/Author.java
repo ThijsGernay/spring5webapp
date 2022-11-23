@@ -3,6 +3,7 @@ package guru.springframework.spring5webapp.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ public class Author {
     private String FirstName;
     private String LastName;
     @ManyToMany(mappedBy = "authors")
+    @ToString.Exclude
     private Set<Book> books = new HashSet<>();
 
     public Author(String firstName, String lastName) {

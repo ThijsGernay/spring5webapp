@@ -3,11 +3,11 @@ package guru.springframework.spring5webapp.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -25,6 +25,10 @@ public class Publisher {
     private String city;
     private String state;
     private String zip;
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    @ToString.Exclude
+    private Set<Book> books = new HashSet<>();
 
     public Publisher(String name, String addressLine1, String city, String state, String zip) {
         this.name = name;
